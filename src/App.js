@@ -1,8 +1,14 @@
+import { Route, Routes } from 'react-router-dom';
+import { Navbar } from './components';
+import { Home } from './pages';
+
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-      <button class="btn btn-secondary">Button</button>
-    </h1>
+    <div className="container mx-auto">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </div>
   );
 }
