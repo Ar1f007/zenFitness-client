@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const Card = ({ product: { image, name, description, price, quantity, supplier } }) => {
+export const Card = ({ product: { _id, image, name, description, price, quantity, supplier } }) => {
   return (
     <div className="card max-w-md bg-base-100 shadow-xl">
       <figure>
@@ -20,7 +20,7 @@ export const Card = ({ product: { image, name, description, price, quantity, sup
             Supplier: <span className="font-semibold pl-1">{supplier}</span>
           </div>
         </div>
-        <Link to="/manage-inventory" className="btn btn-primary mt-5">
+        <Link to={`/details/${_id}`} className="btn btn-primary mt-5">
           Manage
         </Link>
       </div>

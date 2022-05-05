@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar } from './components';
-import { Home } from './pages';
+import { Home, ProductDetails } from './pages';
 
 export default function App() {
   return (
@@ -9,6 +9,7 @@ export default function App() {
       <main className="container mx-auto min-h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="details/:id" element={<ProductDetails />} />
         </Routes>
       </main>
       <Footer />
