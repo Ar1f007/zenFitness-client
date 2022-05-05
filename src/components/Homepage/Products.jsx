@@ -1,4 +1,4 @@
-import { Card } from './';
+import { Card } from '../Layout/Card';
 
 const products = [
   {
@@ -57,7 +57,7 @@ const products = [
   },
 ];
 
-export const Items = () => {
+export const Products = () => {
   return (
     <section className="py-20 px-5">
       <h2 className="text-3xl text-center uppercase mb-10">Products</h2>
