@@ -9,7 +9,7 @@ export default function App() {
       <main className="container mx-auto min-h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="details/:id" element={<ProductDetails />} />
+          <Route path="/products/details/:id" element={<ProductDetails />} />
         </Routes>
       </main>
       <Footer />
