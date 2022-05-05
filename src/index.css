@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.mySwiper .swiper-slide img {
+  margin: 0 auto;
+}
