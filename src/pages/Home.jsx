@@ -1,11 +1,10 @@
-import { Banner } from '../components';
+import { Banner, Items } from '../components';
 
 export const Home = () => {
   return (
     <>
-      <header>
-        <Banner />
-      </header>
+      <Banner />
+      <Items />
     </>
   );
 };
