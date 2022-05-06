@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Divider, FormBox, FormButton, FormHeader, FormInput, Social } from '../components';
 import { toast } from 'react-toastify';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase.config';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { splitErrorMessage } from '../utils/splitErrorMessage';
 
 const initialState = {
   email: '',
@@ -11,12 +15,16 @@ const customId = 'toast';
 
 export const SignIn = () => {
   const [values, setValues] = useState(initialState);
+  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || '/';
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = values;
 
@@ -29,8 +37,28 @@ export const SignIn = () => {
       return;
     }
 
-    console.log({ email, password });
+    await signInWithEmailAndPassword(email, password);
+    setValues(initialState);
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+      return;
+    }
+
+    if (error) {
+      toast.error(splitErrorMessage(error.message), {
+        position: toast.POSITION.TOP_CENTER,
+        toastId: customId,
+      });
+      setValues({ ...values, email: '', password: '' });
+      return;
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, navigate, from, error]);
+
   return (
     <FormBox>
       <FormHeader
@@ -59,8 +87,7 @@ export const SignIn = () => {
           classes="mt-6"
           passwordWithIcon
         />
-
-        <FormButton text="Sign in" />
+        {loading ? <FormButton classes="loading" /> : <FormButton text="Sign in" />}
       </form>
     </FormBox>
   );

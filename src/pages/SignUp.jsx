@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Divider, FormBox, FormButton, FormHeader, FormInput, Social } from '../components';
-import { toast } from 'react-toastify';
+import { splitErrorMessage } from '../utils/splitErrorMessage';
+
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase.config';
+
 import { useLocation, useNavigate } from 'react-router-dom';
-import { splitErrorMessage } from '../utils/splitErrorMessage';
+import { toast } from 'react-toastify';
 
 const initialState = {
   name: '',
@@ -12,12 +14,10 @@ const initialState = {
   password: '',
   confirmPassword: '',
 };
-
 const customId = 'toast';
 
 export const SignUp = () => {
   const [values, setValues] = useState(initialState);
-
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(
     auth,
     { sendEmailVerification: true }
@@ -25,7 +25,6 @@ export const SignUp = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-
   let from = location.state?.from?.pathname || '/';
 
   const handleChange = (e) => {
@@ -52,7 +51,7 @@ export const SignUp = () => {
       });
       return;
     }
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
   };
 
   useEffect(() => {
@@ -66,8 +65,11 @@ export const SignUp = () => {
 
     if (error) {
       toast.error(splitErrorMessage(error.message));
+      setValues({ ...values, email: '', password: '', confirmPassword: '' });
       return;
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, navigate, from, error]);
 
   return (
@@ -91,7 +93,7 @@ export const SignUp = () => {
         />
         <FormInput
           label="Email"
-          type="text"
+          type="email"
           name="email"
           value={values.email}
           handleChange={handleChange}
