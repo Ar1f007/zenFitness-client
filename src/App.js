@@ -22,7 +22,7 @@ export default function App() {
             }
           />
           <Route
-            path="/add-new-product"
+            path="/add-product"
             element={
               <Protected>
                 <AddProduct />

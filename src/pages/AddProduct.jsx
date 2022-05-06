@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FormBox, FormButton, FormInput } from '../components';
+import { auth } from '../firebase.config';
 
 const initialState = {
   name: '',
@@ -16,6 +18,8 @@ const customId = 'toast';
 
 export const AddProduct = () => {
   const [values, setValues] = useState(initialState);
+  const [user] = useAuthState(auth);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -45,8 +49,7 @@ export const AddProduct = () => {
     const addProduct = async () => {
       try {
         const { data } = await axios.post('http://localhost:5000/products', {
-          headers: { 'Content-type': 'application/json' },
-          values,
+          product: { ...values, email: user.email },
         });
 
         if (data.acknowledged) {

@@ -38,7 +38,7 @@ export const AllProducts = () => {
       <section className="min-h-screen">
         <div className="pt-10 lg:pt-20 pb-10 flex justify-between">
           <h1 className="text-3xl lg:text-4xl ">All Products</h1>
-          <Link to="/add-new-product" className="btn btn-primary">
+          <Link to="/add-product" className="btn btn-primary">
             Add new Product
           </Link>
         </div>
