@@ -3,13 +3,15 @@ import { Divider, FormBox, FormButton, FormHeader, FormInput, Social } from '../
 import { toast } from 'react-toastify';
 
 const initialState = {
+  name: '',
   email: '',
   password: '',
+  confirmPassword: '',
 };
 
 const customId = 'toast';
 
-export const SignIn = () => {
+export const SignUp = () => {
   const [values, setValues] = useState(initialState);
 
   const handleChange = (e) => {
@@ -18,9 +20,9 @@ export const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = values;
+    const { name, email, password, confirmPassword } = values;
 
-    if (!email || !password) {
+    if (!name || !email || !password || !confirmPassword) {
       toast.error('Please provide all values', {
         position: toast.POSITION.TOP_CENTER,
         toastId: customId,
@@ -29,20 +31,35 @@ export const SignIn = () => {
       return;
     }
 
-    console.log({ email, password });
+    if (password !== confirmPassword) {
+      toast.error('Password does not match', {
+        position: toast.POSITION.TOP_CENTER,
+        toastId: customId,
+      });
+      return;
+    }
+
+    console.log({ email, password, name, confirmPassword });
   };
   return (
     <FormBox>
       <FormHeader
-        heading="Sign in to your account"
-        queryText="Don't have account?"
-        link="/sign-up"
-        goto="Sign up here"
+        heading="Create an account"
+        queryText="Already have account?"
+        link="/sign-in"
+        goto="Sign in here"
       />
       <Social />
       <Divider />
 
       <form onSubmit={handleSubmit}>
+        <FormInput
+          label="Name"
+          type="text"
+          name="name"
+          value={values.name}
+          handleChange={handleChange}
+        />
         <FormInput
           label="Email"
           type="text"
@@ -59,8 +76,17 @@ export const SignIn = () => {
           classes="mt-6"
           passwordWithIcon
         />
+        <FormInput
+          label="Confirm Password"
+          type="password"
+          name="confirmPassword"
+          value={values.confirmPassword}
+          handleChange={handleChange}
+          classes="mt-6"
+          passwordWithIcon
+        />
 
-        <FormButton text="Sign in" />
+        <FormButton text="Sign up" />
       </form>
     </FormBox>
   );

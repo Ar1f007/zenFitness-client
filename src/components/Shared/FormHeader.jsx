@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const FormHeader = ({ directionText, queryText, link, goto }) => {
+export const FormHeader = ({ heading, queryText, link, goto }) => {
   return (
     <>
       <p
@@ -8,7 +8,7 @@ export const FormHeader = ({ directionText, queryText, link, goto }) => {
         aria-label="Login to your account"
         className="text-2xl font-extrabold leading-6 text-neutral"
       >
-        {directionText}
+        {heading}
       </p>
       <p className="text-sm mt-4 font-medium leading-none text-gray-500">
         {queryText}{' '}
