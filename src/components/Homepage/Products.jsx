@@ -1,8 +1,13 @@
 import { useProducts } from '../../hooks/useProducts';
 import { Card } from '../Layout/Card';
+import { Spinner } from '../Shared/Spinner';
 
 export const Products = () => {
-  const [products] = useProducts();
+  const { products, loading } = useProducts();
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <section className="py-20 px-5">

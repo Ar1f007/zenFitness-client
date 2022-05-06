@@ -1,11 +1,17 @@
 import { useParams } from 'react-router-dom';
+import { Spinner } from '../components';
 import { useProductDetails } from '../hooks/useProductDetails';
 
 export const ProductDetails = () => {
   const { id } = useParams();
   const {
     productDetails: { name, description, price, quantity, image, supplier },
+    loading,
   } = useProductDetails(id);
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <section className="py-10 lg:py-20 lg:px-10 grid grid-cols-1 lg:grid-cols-2 content-center">

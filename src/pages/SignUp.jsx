@@ -66,6 +66,7 @@ export const SignUp = () => {
           name="email"
           value={values.email}
           handleChange={handleChange}
+          classes="mt-6"
         />
         <FormInput
           label="Password"
