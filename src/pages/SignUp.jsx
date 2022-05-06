@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Divider, FormBox, FormButton, FormHeader, FormInput, Social } from '../components';
 import { toast } from 'react-toastify';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase.config';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { splitErrorMessage } from '../utils/splitErrorMessage';
 
 const initialState = {
   name: '',
@@ -14,11 +18,21 @@ const customId = 'toast';
 export const SignUp = () => {
   const [values, setValues] = useState(initialState);
 
+  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(
+    auth,
+    { sendEmailVerification: true }
+  );
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  let from = location.state?.from?.pathname || '/';
+
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password, confirmPassword } = values;
 
@@ -38,9 +52,24 @@ export const SignUp = () => {
       });
       return;
     }
-
-    console.log({ email, password, name, confirmPassword });
+    createUserWithEmailAndPassword(email, password);
   };
+
+  useEffect(() => {
+    if (user) {
+      toast.success('Account created successfully', {
+        toastId: customId,
+      });
+      navigate(from, { replace: true });
+      return;
+    }
+
+    if (error) {
+      toast.error(splitErrorMessage(error.message));
+      return;
+    }
+  }, [user, navigate, from, error]);
+
   return (
     <FormBox>
       <FormHeader
@@ -87,7 +116,7 @@ export const SignUp = () => {
           passwordWithIcon
         />
 
-        <FormButton text="Sign up" />
+        {loading ? <FormButton classes="loading" /> : <FormButton text="Sign up" />}
       </form>
     </FormBox>
   );
