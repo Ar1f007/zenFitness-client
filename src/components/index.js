@@ -1,7 +1,15 @@
 export { Navbar } from './Layout/Navbar';
+export { Card } from './Layout/Card';
+export { Footer } from './Layout/Footer';
+export { FormInput } from './Layout/FormInput';
+export { FormBox } from './Layout/FormBox';
+
 export { Banner } from './Homepage/Banner';
 export { Products } from './Homepage/Products';
 export { Supply } from './Homepage/Supply';
 export { Brands } from './Homepage/Brands';
-export { Card } from './Layout/Card';
-export { Footer } from './Layout/Footer';
+
+export { Social } from './Shared/Social';
+export { FormHeader } from './Shared/FormHeader';
+export { Divider } from './Shared/Divider';
+export { FormButton } from './Shared/FormButton';
