@@ -1,8 +1,10 @@
 import { useProducts } from '../hooks/useProducts';
 import { Spinner } from '../components';
 import { useId, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Modal } from '../components/Modal';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase.config';
 
 export const AllProducts = () => {
   const { products, setProducts, loading } = useProducts();
@@ -10,11 +12,19 @@ export const AllProducts = () => {
   const [deleteId, setDeleteId] = useState(null);
   const id = useId();
 
+  const [user] = useAuthState(auth);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   if (loading) {
     return <Spinner />;
   }
 
   const handleDelete = (id) => {
+    if (!user) {
+      navigate('/sign-in', { replace: true, state: { from: location } });
+      return;
+    }
     setShowModal(!showModal);
     setDeleteId(id);
   };
@@ -42,7 +52,7 @@ export const AllProducts = () => {
             <tbody>
               {products?.map((product, i) => (
                 <tr key={`${id}-${i}`}>
-                  <th>{i}</th>
+                  <th>{i + 1}</th>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
@@ -50,7 +60,10 @@ export const AllProducts = () => {
                     <Link to={`/products/details/${product._id}`} className="btn btn-info">
                       Details
                     </Link>
-                    <button className="btn modal-button" onClick={() => handleDelete(product._id)}>
+                    <button
+                      className="btn btn-error hover:bg-red-500"
+                      onClick={() => handleDelete(product._id)}
+                    >
                       Delete
                     </button>
                   </td>
