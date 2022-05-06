@@ -19,5 +19,5 @@ export const useProducts = () => {
     fetchData();
   }, []);
 
-  return { products, loading };
+  return { products, setProducts, loading };
 };

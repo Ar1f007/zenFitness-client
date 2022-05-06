@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useProducts } from '../../hooks/useProducts';
 import { Card } from '../Layout/Card';
 import { Spinner } from '../Shared/Spinner';
@@ -17,6 +18,14 @@ export const Products = () => {
         {products.slice(0, 6).map((product, i) => (
           <Card product={product} key={i} />
         ))}
+      </div>
+      <div className="flex justify-center">
+        <Link to="/all-products" className="fancy mt-10 lg:mt-20">
+          <span className="top-key"></span>
+          <span className="text">Go to Inventory</span>
+          <span className="bottom-key-1"></span>
+          <span className="bottom-key-2"></span>
+        </Link>
       </div>
     </section>
   );

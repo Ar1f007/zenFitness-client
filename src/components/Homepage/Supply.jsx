@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const Supply = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-between gap-5 py-20 px-5 bg-base-100 ">
+    <div className="flex flex-col lg:flex-row justify-between gap-5 pt-10 pb-20 px-5 bg-base-100 ">
       <div
         className="hero max-w-3xl h-96 hover:-translate-y-1 "
         style={{ backgroundImage: 'url(images/home.jpg)', transitionDuration: '350ms' }}

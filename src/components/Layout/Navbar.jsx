@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase.config';
 import { signOut } from 'firebase/auth';
@@ -9,15 +9,17 @@ const navigation = [
     name: 'Home',
     path: '/',
   },
-  {
-    name: 'Manage Inventory',
-    path: '/manage-inventory',
-  },
   { name: 'About Us', path: '/about-us' },
 ];
 
+const protectedLinks = [
+  { name: 'Manage Products', path: '/all-products' },
+  { name: 'My Items', path: '/my-items' },
+  { name: 'Add Product', path: '/add-product' },
+];
 export const Navbar = () => {
   const id = useId();
+  const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
 
   return (
@@ -58,18 +60,31 @@ export const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            {navigation.map((item) => (
-              <li key={`${id}-${item.name}`}>
-                <NavLink to={item.path}>{item.name}</NavLink>
+            {navigation.map((link) => (
+              <li key={`${id}-${link.name}`}>
+                <NavLink to={link.path}>{link.name}</NavLink>
               </li>
             ))}
+            {user
+              ? protectedLinks.map((link) => (
+                  <li key={`${id}-${link.name}`}>
+                    <NavLink to={link.path}>{link.name}</NavLink>
+                  </li>
+                ))
+              : null}
           </ul>
         </div>
         <div className="navbar-end">
           {loading ? (
             <button className="btn loading px-9"></button>
           ) : user ? (
-            <button className="btn" onClick={() => signOut(auth)}>
+            <button
+              className="btn"
+              onClick={async () => {
+                signOut(auth);
+                navigate('/');
+              }}
+            >
               Sign out
             </button>
           ) : (

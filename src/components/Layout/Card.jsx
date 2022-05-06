@@ -21,7 +21,7 @@ export const Card = ({ product: { _id, image, name, description, price, quantity
           </div>
         </div>
         <Link to={`/products/details/${_id}`} className="btn btn-primary mt-5">
-          Manage
+          View details
         </Link>
       </div>
     </div>
