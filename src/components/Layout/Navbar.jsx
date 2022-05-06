@@ -1,5 +1,8 @@
 import { useId } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase.config';
+import { signOut } from 'firebase/auth';
 
 const navigation = [
   {
@@ -15,6 +18,8 @@ const navigation = [
 
 export const Navbar = () => {
   const id = useId();
+  const [user, loading] = useAuthState(auth);
+
   return (
     <div className="bg-base-100">
       <div className="container mx-auto navbar bg-base-100">
@@ -61,9 +66,17 @@ export const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="/sign-in" className="btn">
-            Sign In
-          </Link>
+          {loading ? (
+            <button className="btn loading px-9"></button>
+          ) : user ? (
+            <button className="btn" onClick={() => signOut(auth)}>
+              Sign out
+            </button>
+          ) : (
+            <Link to="/sign-in" className="btn">
+              Sign In
+            </Link>
+          )}
         </div>
       </div>
     </div>
