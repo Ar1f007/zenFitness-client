@@ -25,6 +25,7 @@ export const FormInput = ({
           value={value}
           onChange={handleChange}
           id={name}
+          placeholder={name}
           className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-neutral py-3 w-full pl-3 mt-2"
         />
       ) : (

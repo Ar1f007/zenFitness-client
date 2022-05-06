@@ -1,7 +1,7 @@
 import { useProducts } from '../hooks/useProducts';
 import { Spinner } from '../components';
 import { useId, useState } from 'react';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Modal } from '../components/Modal';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase.config';
@@ -36,7 +36,12 @@ export const AllProducts = () => {
   return (
     <>
       <section className="min-h-screen">
-        <h1 className="text-3xl lg:text-4xl text-center pt-20 pb-10">All Products</h1>
+        <div className="pt-10 lg:pt-20 pb-10 flex justify-between">
+          <h1 className="text-3xl lg:text-4xl ">All Products</h1>
+          <Link to="/add-new-product" className="btn btn-primary">
+            Add new Product
+          </Link>
+        </div>
 
         <div className="overflow-x-auto">
           <table className="table table-zebra w-full">

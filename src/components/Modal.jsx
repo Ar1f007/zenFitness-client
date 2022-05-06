@@ -1,20 +1,22 @@
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export const Modal = ({ handleOnClickNoButton, id, products, setProducts }) => {
   const handleDelete = () => {
-    const url = `http://localhost:5000/products/${id}`;
-    fetch(url, {
-      method: 'DELETE',
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    const deleteProduct = async () => {
+      try {
+        const { data } = await axios.delete(`http://localhost:5000/products/${id}`);
         if (data.acknowledged) {
           toast.success('Deleted Successfully!');
           const remaining = products.filter((product) => product._id !== id);
           setProducts(remaining);
         }
-      });
+      } catch (error) {
+        toast.error(error.message);
+      }
+    };
 
+    deleteProduct();
     handleOnClickNoButton();
   };
   return (

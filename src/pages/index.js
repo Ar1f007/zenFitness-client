@@ -4,3 +4,4 @@ export { NotFound } from './NotFound';
 export { SignIn } from './SignIn';
 export { SignUp } from './SignUp';
 export { AllProducts } from './AllProducts';
+export { AddProduct } from './AddProduct';

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const useProducts = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ export const useProducts = () => {
         setProducts(data);
         setLoading(false);
       } catch (error) {
-        console.log(error.message);
+        toast.error(error.message);
         setLoading(false);
       }
     };

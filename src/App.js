@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar, Protected } from './components';
-import { AllProducts, Home, NotFound, ProductDetails, SignIn, SignUp } from './pages';
+import { AllProducts, ProductDetails, AddProduct, Home, NotFound, SignIn, SignUp } from './pages';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +18,14 @@ export default function App() {
             element={
               <Protected>
                 <ProductDetails />
+              </Protected>
+            }
+          />
+          <Route
+            path="/add-new-product"
+            element={
+              <Protected>
+                <AddProduct />
               </Protected>
             }
           />
