@@ -59,14 +59,13 @@ export const ProductDetails = () => {
       }
 
       const { data } = await axios.put(`http://localhost:5000/products/${id}/restock`, {
-        restockAmount,
+        restockAmount: quantity + restockAmount,
       });
 
       if (data.acknowledged) {
         toast.success('Quantity updated successfully');
 
-        setProdQuantity(restockAmount);
-
+        setProdQuantity((prev) => prev + restockAmount);
         setRestockAmount('');
       }
     } catch (error) {

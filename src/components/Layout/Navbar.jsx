@@ -6,12 +6,10 @@ import { signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
 const navigation = [
-  {
-    name: 'Home',
-    path: '/',
-  },
-  { name: 'Manage Products', path: '/all-products' },
-  { name: 'About Us', path: '/about-us' },
+  { name: 'Home', path: '/' },
+  { name: 'All Products', path: '/all-products' },
+  { name: 'Blogs', path: '/blogs' },
+  { name: 'About', path: '/about' },
 ];
 
 const protectedLinks = [
@@ -58,11 +56,18 @@ export const Navbar = () => {
               tabIndex="0"
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              {navigation.map((item) => (
-                <li key={`${id}-${item.name}`}>
-                  <NavLink to={item.path}>{item.name}</NavLink>
+              {navigation.map((link) => (
+                <li key={`${id}-${link.name}`}>
+                  <NavLink to={link.path}>{link.name}</NavLink>
                 </li>
               ))}
+              {user
+                ? protectedLinks.map((link) => (
+                    <li key={`${id}-${link.name}`}>
+                      <NavLink to={link.path}>{link.name}</NavLink>
+                    </li>
+                  ))
+                : null}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">

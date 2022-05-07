@@ -15,7 +15,8 @@ export const Social = () => {
   let from = location?.state?.from?.pathname || '/';
 
   if (token) {
-    return navigate(from, { replace: true });
+    navigate(from, { replace: true });
+    return;
   }
 
   if (error) {
