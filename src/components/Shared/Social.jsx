@@ -1,8 +1,35 @@
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { auth } from '../../firebase.config';
+import { useToken } from '../../hooks/useToken';
+import { splitErrorMessage } from '../../utils/splitErrorMessage';
+
+const customId = 'toast';
 export const Social = () => {
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const token = useToken(user);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  let from = location?.state?.from?.pathname || '/';
+
+  if (token) {
+    return navigate(from, { replace: true });
+  }
+
+  if (error) {
+    toast.error(splitErrorMessage(error.message), {
+      position: toast.POSITION.TOP_CENTER,
+      toastId: customId,
+    });
+    return;
+  }
   return (
     <button
       aria-label="Continue with google"
       className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
+      onClick={() => signInWithGoogle()}
     >
       <svg
         width={19}
@@ -28,7 +55,9 @@ export const Social = () => {
           fill="#EB4335"
         />
       </svg>
-      <p className="text-base font-medium ml-4 text-gray-700">Continue with Google</p>
+      <p className="text-base font-medium ml-4 text-gray-700">
+        {loading ? 'Signing in...' : 'Continue with Google'}
+      </p>
     </button>
   );
 };
