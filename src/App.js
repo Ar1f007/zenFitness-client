@@ -1,6 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar, Protected } from './components';
-import { AllProducts, ProductDetails, AddProduct, Home, NotFound, SignIn, SignUp } from './pages';
+import {
+  AllProducts,
+  ProductDetails,
+  AddProduct,
+  MyProducts,
+  Home,
+  NotFound,
+  SignIn,
+  SignUp,
+} from './pages';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -29,6 +38,7 @@ export default function App() {
               </Protected>
             }
           />
+          <Route path="/my-products" element={<MyProducts />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />

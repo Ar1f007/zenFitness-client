@@ -14,7 +14,7 @@ const navigation = [
 
 const protectedLinks = [
   { name: 'Manage Products', path: '/all-products' },
-  { name: 'My Items', path: '/my-items' },
+  { name: 'My Products', path: '/my-products' },
   { name: 'Add Product', path: '/add-product' },
 ];
 export const Navbar = () => {
