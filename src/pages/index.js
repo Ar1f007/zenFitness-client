@@ -6,3 +6,4 @@ export { SignUp } from './SignUp';
 export { AllProducts } from './AllProducts';
 export { AddProduct } from './AddProduct';
 export { MyProducts } from './MyProducts';
+export { Blogs } from './Blogs';

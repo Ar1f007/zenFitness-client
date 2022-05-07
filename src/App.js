@@ -9,6 +9,7 @@ import {
   NotFound,
   SignIn,
   SignUp,
+  Blogs,
 } from './pages';
 
 import { ToastContainer } from 'react-toastify';
@@ -39,6 +40,7 @@ export default function App() {
             }
           />
           <Route path="/my-products" element={<MyProducts />} />
+          <Route path="/blogs" element={<Blogs />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
