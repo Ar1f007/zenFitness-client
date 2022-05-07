@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase.config';
 import { signOut } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const navigation = [
   {
@@ -81,8 +82,13 @@ export const Navbar = () => {
             <button
               className="btn"
               onClick={async () => {
-                signOut(auth);
-                navigate('/');
+                try {
+                  await signOut(auth);
+                  localStorage.removeItem('token');
+                  navigate('/');
+                } catch (error) {
+                  toast.error('Something went wrong!');
+                }
               }}
             >
               Sign out
