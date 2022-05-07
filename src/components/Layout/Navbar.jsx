@@ -10,11 +10,11 @@ const navigation = [
     name: 'Home',
     path: '/',
   },
+  { name: 'Manage Products', path: '/all-products' },
   { name: 'About Us', path: '/about-us' },
 ];
 
 const protectedLinks = [
-  { name: 'Manage Products', path: '/all-products' },
   { name: 'My Products', path: '/my-products' },
   { name: 'Add Product', path: '/add-product' },
 ];
@@ -22,6 +22,16 @@ export const Navbar = () => {
   const id = useId();
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem('token');
+      navigate('/');
+    } catch (error) {
+      toast.error('Something went wrong!');
+    }
+  };
 
   return (
     <div className="bg-base-100">
@@ -79,18 +89,7 @@ export const Navbar = () => {
           {loading ? (
             <button className="btn loading px-9"></button>
           ) : user ? (
-            <button
-              className="btn"
-              onClick={async () => {
-                try {
-                  await signOut(auth);
-                  localStorage.removeItem('token');
-                  navigate('/');
-                } catch (error) {
-                  toast.error('Something went wrong!');
-                }
-              }}
-            >
+            <button className="btn" onClick={handleSignOut}>
               Sign out
             </button>
           ) : (

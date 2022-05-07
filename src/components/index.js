@@ -15,5 +15,6 @@ export { FormHeader } from './Shared/FormHeader';
 export { Divider } from './Shared/Divider';
 export { FormButton } from './Shared/FormButton';
 export { Spinner } from './Shared/Spinner';
+export { ProductList } from './Shared/ProductList';
 
 export { Protected } from './Auth/Protected';

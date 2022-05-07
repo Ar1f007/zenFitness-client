@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Divider, FormBox, FormButton, FormHeader, FormInput, Social } from '../components';
 import { splitErrorMessage } from '../utils/splitErrorMessage';
-
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase.config';
-
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useToken } from '../hooks/useToken';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const initialState = {
@@ -22,10 +21,8 @@ export const SignUp = () => {
     auth,
     { sendEmailVerification: true }
   );
-
   const navigate = useNavigate();
-  const location = useLocation();
-  let from = location.state?.from?.pathname || '/';
+  const token = useToken(user);
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -40,7 +37,6 @@ export const SignUp = () => {
         position: toast.POSITION.TOP_CENTER,
         toastId: customId,
       });
-
       return;
     }
 
@@ -55,11 +51,11 @@ export const SignUp = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (token) {
       toast.success('Account created successfully', {
         toastId: customId,
       });
-      navigate(from, { replace: true });
+      navigate('/');
       return;
     }
 
@@ -70,7 +66,7 @@ export const SignUp = () => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, navigate, from, error]);
+  }, [user, navigate, error, token]);
 
   return (
     <FormBox>

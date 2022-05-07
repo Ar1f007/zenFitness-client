@@ -58,7 +58,7 @@ export const AddProduct = () => {
           });
 
           setTimeout(() => {
-            navigate('/all-products');
+            navigate('/my-products');
           }, 1000);
         }
       } catch (error) {
