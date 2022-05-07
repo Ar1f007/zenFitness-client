@@ -36,15 +36,15 @@ export const AllProducts = () => {
   return (
     <>
       <section className="min-h-screen">
-        <div className="pt-10 lg:pt-20 pb-10 flex justify-between">
-          <h1 className="text-3xl lg:text-4xl ">All Products</h1>
-          <Link to="/add-product" className="btn btn-primary">
+        <div className="pt-10 lg:pt-20 pb-10 px-4 lg:px-0 flex justify-between">
+          <h1 className="text-2xl lg:text-3xl ">All Products</h1>
+          <Link to="/add-product" className="btn btn-primary btn-sm md:btn-md">
             Add new Product
           </Link>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="table table-zebra w-full">
+        <div className="overflow-x-auto pb-16">
+          <table className="table table-zebra w-full ">
             <thead>
               <tr>
                 <th></th>

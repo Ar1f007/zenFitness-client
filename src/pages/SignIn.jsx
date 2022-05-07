@@ -5,6 +5,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase.config';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { splitErrorMessage } from '../utils/splitErrorMessage';
+import { useToken } from '../hooks/useToken';
 
 const initialState = {
   email: '',
@@ -18,6 +19,7 @@ export const SignIn = () => {
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
   const navigate = useNavigate();
   const location = useLocation();
+  const token = useToken(user);
   let from = location.state?.from?.pathname || '/';
 
   const handleChange = (e) => {
@@ -26,14 +28,13 @@ export const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = values;
 
+    const { email, password } = values;
     if (!email || !password) {
       toast.error('Please provide all values', {
         position: toast.POSITION.TOP_CENTER,
         toastId: customId,
       });
-
       return;
     }
 
@@ -42,7 +43,7 @@ export const SignIn = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
       return;
     }
@@ -57,7 +58,7 @@ export const SignIn = () => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, navigate, from, error]);
+  }, [user, navigate, from, error, token]);
 
   return (
     <FormBox>

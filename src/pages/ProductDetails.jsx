@@ -25,23 +25,19 @@ export const ProductDetails = () => {
     return <Spinner />;
   }
 
-  const handleDelivered = (quantity) => {
-    const updateQuantityValue = async () => {
-      try {
-        const { data } = await axios.put(`http://localhost:5000/products/${id}/update-quantity`, {
-          quantity: prodQuantity - 1,
-        });
+  const handleDelivered = async () => {
+    try {
+      const { data } = await axios.put(`http://localhost:5000/products/${id}/update-quantity`, {
+        quantity: prodQuantity - 1,
+      });
 
-        if (data.acknowledged) {
-          toast.success('Delivered successfully');
-
-          setProdQuantity((prev) => prev - 1);
-        }
-      } catch (error) {
-        toast.error(error.message);
+      if (data.acknowledged) {
+        toast.success('Delivered successfully');
+        setProdQuantity((prev) => prev - 1);
       }
-    };
-    updateQuantityValue();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const handleRestock = async (e) => {
@@ -109,7 +105,7 @@ export const ProductDetails = () => {
           <form onSubmit={handleRestock}>
             <input
               type="number"
-              placeholder="update stock"
+              placeholder="update product stock. eg: 100"
               className="input input-md  input-bordered w-full max-w-xs mt-5"
               value={restockAmount}
               onChange={(e) => setRestockAmount(Number(e.target.value))}
