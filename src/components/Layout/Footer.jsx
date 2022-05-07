@@ -23,13 +23,13 @@ export const Footer = () => {
         </div>
         <div>
           <span className="footer-title">Company</span>
-          <Link to="/about-us" className="link link-hover">
-            About us
+          <Link to="/about" className="link link-hover">
+            About
           </Link>
           <Link to="/" className="link link-hover">
             Terms of Service
           </Link>
-          <Link to="/" className="link link-hover">
+          <Link to="/all-products" className="link link-hover">
             Products
           </Link>
         </div>
