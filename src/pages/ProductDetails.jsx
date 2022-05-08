@@ -16,6 +16,8 @@ export const ProductDetails = () => {
 
   const [prodQuantity, setProdQuantity] = useState(quantity);
   const [restockAmount, setRestockAmount] = useState('');
+  const [quantityLoading, setQuantityLoading] = useState(false);
+  const [restockLoading, setRestockLoading] = useState(false);
 
   useEffect(() => {
     setProdQuantity(quantity);
@@ -27,6 +29,8 @@ export const ProductDetails = () => {
 
   const handleDelivered = async () => {
     try {
+      setQuantityLoading(true);
+
       const { data } = await axios.put(
         `https://frozen-atoll-57393.herokuapp.com/products/${id}/update-quantity`,
         {
@@ -37,9 +41,11 @@ export const ProductDetails = () => {
       if (data.acknowledged) {
         toast.success('Delivered successfully');
         setProdQuantity((prev) => prev - 1);
+        setQuantityLoading(false);
       }
     } catch (error) {
       toast.error(error.message);
+      setQuantityLoading(false);
     }
   };
 
@@ -61,6 +67,7 @@ export const ProductDetails = () => {
         return;
       }
 
+      setRestockLoading(true);
       const { data } = await axios.put(
         `https://frozen-atoll-57393.herokuapp.com/products/${id}/restock`,
         {
@@ -73,11 +80,14 @@ export const ProductDetails = () => {
 
         setProdQuantity((prev) => prev + restockAmount);
         setRestockAmount('');
+        setRestockLoading(false);
       }
     } catch (error) {
       toast.error(error.message, {
         toastId: customId,
       });
+
+      setRestockLoading(false);
     }
   };
 
@@ -99,13 +109,17 @@ export const ProductDetails = () => {
             <div className="badge badge-warning p-3">out of stock</div>
           )}
           <br />
-          <button
-            className="btn tracking-wider mt-5"
-            disabled={prodQuantity <= 0}
-            onClick={() => handleDelivered(quantity)}
-          >
-            Delivered
-          </button>
+          {quantityLoading ? (
+            <button className="btn loading mt-5 px-[42px]"></button>
+          ) : (
+            <button
+              className="btn tracking-wider mt-5"
+              disabled={prodQuantity <= 0}
+              onClick={() => handleDelivered(quantity)}
+            >
+              Delivered
+            </button>
+          )}
           <br />
           <form onSubmit={handleRestock}>
             <input
@@ -116,7 +130,11 @@ export const ProductDetails = () => {
               onChange={(e) => setRestockAmount(Number(e.target.value))}
             />
 
-            <button className="btn lg:ml-3 mt-5 lg:mt-0">Restock</button>
+            {restockLoading ? (
+              <button className="btn loading lg:ml-3 mt-5 lg:mt-0 px-8"></button>
+            ) : (
+              <button className="btn lg:ml-3 mt-5 lg:mt-0">Restock</button>
+            )}
           </form>
         </div>
       </section>
