@@ -4,6 +4,7 @@ ZenFitness is a MERN stack inventory management website where one can view produ
 
 ## Features / what is included in this project
 
+- Completely responsive for all devices
 - View selected products on Homepage
 - Brands/Suppliers slider
 - Email - password registration system
