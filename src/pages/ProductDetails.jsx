@@ -28,7 +28,7 @@ export const ProductDetails = () => {
   const handleDelivered = async () => {
     try {
       const { data } = await axios.put(
-        `https://frozen-atoll-57393.herokuapp.com/products/products/${id}/update-quantity`,
+        `https://frozen-atoll-57393.herokuapp.com/products/${id}/update-quantity`,
         {
           quantity: prodQuantity - 1,
         }
@@ -62,7 +62,7 @@ export const ProductDetails = () => {
       }
 
       const { data } = await axios.put(
-        `https://frozen-atoll-57393.herokuapp.com/products/products/${id}/restock`,
+        `https://frozen-atoll-57393.herokuapp.com/products/${id}/restock`,
         {
           restockAmount: quantity + restockAmount,
         }

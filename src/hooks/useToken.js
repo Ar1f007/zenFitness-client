@@ -10,7 +10,7 @@ export const useToken = (user) => {
 
       if (email) {
         const { data } = await axios.post(
-          'https://frozen-atoll-57393.herokuapp.com/products/generate-token',
+          'https://frozen-atoll-57393.herokuapp.com/generate-token',
           { email }
         );
 

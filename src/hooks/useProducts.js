@@ -9,9 +9,7 @@ export const useProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          'https://frozen-atoll-57393.herokuapp.com/products/products'
-        );
+        const { data } = await axios.get('https://frozen-atoll-57393.herokuapp.com/products');
         setProducts(data);
         setLoading(false);
       } catch (error) {
