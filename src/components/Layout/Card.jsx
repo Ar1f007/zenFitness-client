@@ -8,10 +8,14 @@ export const Card = ({ product: { _id, image, name, description, price, quantity
       </figure>
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
-        <p>{description}</p>
+
+        {/* <p>
+          {description.length < 120 ? description : description?.slice(0, 120)}{' '}
+          <span className="font-semibold">. . .</span>
+        </p> */}
         <div className="card-actions justify-end">
           <div className="badge badge-outline">
-            Price: <span className="font-semibold pl-1">${price}</span>
+            Price: <span className="font-semibold pl-1">${price.toFixed(2)}</span>
           </div>
           <div className="badge badge-outline">
             Quantity: <span className="font-semibold pl-1">{quantity}</span>

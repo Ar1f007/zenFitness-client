@@ -8,7 +8,7 @@ export const useProductDetails = (id) => {
   useEffect(() => {
     const fetchSingleProductDetails = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/products/details/${id}`);
+        const { data } = await axios.get(`/products/details/${id}`);
 
         setProductDetails(data);
         setLoading(false);

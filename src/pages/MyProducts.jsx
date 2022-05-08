@@ -11,7 +11,7 @@ export const MyProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/my-products', {
+        const { data } = await axios.get('/my-products', {
           headers: { authorization: 'Bearer ' + localStorage.getItem('token') },
         });
 

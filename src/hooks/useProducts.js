@@ -9,7 +9,7 @@ export const useProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/products');
+        const { data } = await axios.get('/products');
         setProducts(data);
         setLoading(false);
       } catch (error) {

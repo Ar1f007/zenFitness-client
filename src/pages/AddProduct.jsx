@@ -48,7 +48,7 @@ export const AddProduct = () => {
 
     const addProduct = async () => {
       try {
-        const { data } = await axios.post('http://localhost:5000/products', {
+        const { data } = await axios.post('/products', {
           product: { ...values, email: user.email },
         });
 

@@ -15,7 +15,7 @@ export const Products = () => {
       <h2 className="text-3xl text-center uppercase mb-10 lg:mb-16">Products</h2>
 
       <div className="grid md:grid-cols-2 md:gap-x-10 lg:grid-cols-3 gap-y-10 lg:gap-20">
-        {products.slice(0, 6).map((product, i) => (
+        {products?.slice(0, 6).map((product, i) => (
           <Card product={product} key={i} />
         ))}
       </div>

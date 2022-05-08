@@ -9,7 +9,7 @@ export const useToken = (user) => {
       const email = user?.user?.email;
 
       if (email) {
-        const { data } = await axios.post('http://localhost:5000/generate-token', { email });
+        const { data } = await axios.post('/generate-token', { email });
 
         setToken(data);
         localStorage.setItem('token', data);

@@ -5,7 +5,7 @@ export const Modal = ({ handleOnClickNoButton, id, products, setProducts }) => {
   const handleDelete = () => {
     const deleteProduct = async () => {
       try {
-        const { data } = await axios.delete(`http://localhost:5000/products/${id}`);
+        const { data } = await axios.delete(`/products/${id}`);
         if (data.acknowledged) {
           toast.success('Deleted Successfully!');
           const remaining = products.filter((product) => product._id !== id);

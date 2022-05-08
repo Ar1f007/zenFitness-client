@@ -12,7 +12,7 @@ export const Supply = () => {
           <div className="max-w-md">
             <h1 className="mb-5 text-3xl font-bold">Products for Home</h1>
             <Link
-              to="/inventory"
+              to="/all-products"
               className="btn btn-outline hover:bg-primary hover:border-primary border-base-100 text-base-100"
             >
               Explore
@@ -30,7 +30,7 @@ export const Supply = () => {
             <h1 className="mb-5 text-3xl font-bold">Commercial Products</h1>
 
             <Link
-              to="/inventory"
+              to="/all-products"
               className="btn btn-outline hover:bg-primary hover:border-primary border-base-100 text-base-100"
             >
               Explore

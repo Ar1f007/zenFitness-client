@@ -27,7 +27,7 @@ export const ProductDetails = () => {
 
   const handleDelivered = async () => {
     try {
-      const { data } = await axios.put(`http://localhost:5000/products/${id}/update-quantity`, {
+      const { data } = await axios.put(`/products/${id}/update-quantity`, {
         quantity: prodQuantity - 1,
       });
 
@@ -58,7 +58,7 @@ export const ProductDetails = () => {
         return;
       }
 
-      const { data } = await axios.put(`http://localhost:5000/products/${id}/restock`, {
+      const { data } = await axios.put(`/products/${id}/restock`, {
         restockAmount: quantity + restockAmount,
       });
 
