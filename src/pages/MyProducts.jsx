@@ -11,9 +11,12 @@ export const MyProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get('/my-products', {
-          headers: { authorization: 'Bearer ' + localStorage.getItem('token') },
-        });
+        const { data } = await axios.get(
+          'https://frozen-atoll-57393.herokuapp.com/products/my-products',
+          {
+            headers: { authorization: 'Bearer ' + localStorage.getItem('token') },
+          }
+        );
 
         setProducts(data);
         setLoading(false);

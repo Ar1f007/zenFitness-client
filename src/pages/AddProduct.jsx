@@ -48,9 +48,12 @@ export const AddProduct = () => {
 
     const addProduct = async () => {
       try {
-        const { data } = await axios.post('/products', {
-          product: { ...values, email: user.email },
-        });
+        const { data } = await axios.post(
+          'https://frozen-atoll-57393.herokuapp.com/products/products',
+          {
+            product: { ...values, email: user.email },
+          }
+        );
 
         if (data.acknowledged) {
           toast.success('Product added successfully', {

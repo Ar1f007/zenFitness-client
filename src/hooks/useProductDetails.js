@@ -8,7 +8,9 @@ export const useProductDetails = (id) => {
   useEffect(() => {
     const fetchSingleProductDetails = async () => {
       try {
-        const { data } = await axios.get(`/products/details/${id}`);
+        const { data } = await axios.get(
+          `https://frozen-atoll-57393.herokuapp.com/products/products/details/${id}`
+        );
 
         setProductDetails(data);
         setLoading(false);

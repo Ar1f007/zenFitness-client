@@ -5,7 +5,9 @@ export const Modal = ({ handleOnClickNoButton, id, products, setProducts }) => {
   const handleDelete = () => {
     const deleteProduct = async () => {
       try {
-        const { data } = await axios.delete(`/products/${id}`);
+        const { data } = await axios.delete(
+          `https://frozen-atoll-57393.herokuapp.com/products/${id}`
+        );
         if (data.acknowledged) {
           toast.success('Deleted Successfully!');
           const remaining = products.filter((product) => product._id !== id);

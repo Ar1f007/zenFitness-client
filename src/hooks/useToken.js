@@ -9,7 +9,10 @@ export const useToken = (user) => {
       const email = user?.user?.email;
 
       if (email) {
-        const { data } = await axios.post('/generate-token', { email });
+        const { data } = await axios.post(
+          'https://frozen-atoll-57393.herokuapp.com/products/generate-token',
+          { email }
+        );
 
         setToken(data);
         localStorage.setItem('token', data);
