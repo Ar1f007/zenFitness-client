@@ -50,7 +50,7 @@ export const ProductList = ({ pageTitle, btnText, link, products, setProducts, m
                 <tr key={`${id}-${i}`}>
                   <th>{i + 1}</th>
                   <td>{product.name}</td>
-                  <td>{product.price}</td>
+                  <td>${product.price.toFixed(2)}</td>
                   <td>{product.quantity}</td>
                   <td className="flex space-x-2">
                     <Link to={`/products/details/${product._id}`} className="btn btn-primary">

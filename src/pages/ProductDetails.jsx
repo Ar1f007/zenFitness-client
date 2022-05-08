@@ -100,7 +100,7 @@ export const ProductDetails = () => {
         <div className="p-5 lg:p-20 lg:bg-base-200 ">
           <h1 className="text-4xl capitalize">{name}</h1>
           <p className="text-lg my-5">{description}</p>
-          <p className="mb-2">Price: ${price}</p>
+          <p className="mb-2">Price: ${price.toFixed(2)}</p>
           <p className="mb-2">Supplier: {supplier}</p>
           <p className="mb-2">Quantity: {prodQuantity}</p>
           {prodQuantity > 0 ? (
