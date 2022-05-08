@@ -84,8 +84,8 @@ export const ProductDetails = () => {
   return (
     <>
       <section className="py-10 lg:py-20 lg:px-10 grid grid-cols-1 lg:grid-cols-2 content-center">
-        <div className="flex justify-center items-center">
-          <img src={image} alt={name} className="max-w-md" />
+        <div className="flex justify-center items-center px-8 lg:px-0">
+          <img src={image} alt={name} className="w-full max-w-md" />
         </div>
         <div className="p-5 lg:p-20 lg:bg-base-200 ">
           <h1 className="text-4xl capitalize">{name}</h1>
@@ -121,8 +121,8 @@ export const ProductDetails = () => {
         </div>
       </section>
 
-      <div className="flex justify-center">
-        <Link to="/all-products" className="fancy mt-10">
+      <div className="flex justify-center pb-12">
+        <Link to="/all-products" className="fancy">
           <span className="top-key"></span>
           <span className="text">Go to Inventory</span>
           <span className="bottom-key-1"></span>
