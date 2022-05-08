@@ -3,7 +3,7 @@ import { Divider, FormBox, FormButton, FormHeader, FormInput, Social } from '../
 import { toast } from 'react-toastify';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase.config';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { splitErrorMessage } from '../utils/splitErrorMessage';
 import { useToken } from '../hooks/useToken';
 
@@ -74,7 +74,7 @@ export const SignIn = () => {
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Email"
-          type="text"
+          type="email"
           name="email"
           value={values.email}
           handleChange={handleChange}
@@ -88,6 +88,16 @@ export const SignIn = () => {
           classes="mt-6"
           passwordWithIcon
         />
+        <p className="text-sm mt-4 font-medium leading-none text-gray-500">
+          <Link
+            to="/sign-in/forgot-password"
+            tabIndex={0}
+            aria-label="Sign up here"
+            className="text-sm font-medium leading-none underline text-neutral cursor-pointer"
+          >
+            Forgot Password?
+          </Link>
+        </p>
         {loading ? <FormButton classes="loading" /> : <FormButton text="Sign in" />}
       </form>
     </FormBox>

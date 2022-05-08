@@ -8,3 +8,4 @@ export { AddProduct } from './AddProduct';
 export { MyProducts } from './MyProducts';
 export { Blogs } from './Blogs';
 export { About } from './About';
+export { PasswordResetForm } from './PasswordResetForm';

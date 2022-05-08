@@ -58,19 +58,19 @@ export const AddProduct = () => {
           });
 
           setTimeout(() => {
+            setValues(initialState);
             navigate('/my-products');
-          }, 1000);
+          }, 300);
         }
       } catch (error) {
         toast.error(error.message, {
           position: toast.POSITION.TOP_CENTER,
           toastId: customId,
         });
+        setValues(initialState);
       }
     };
     addProduct();
-
-    setValues(initialState);
   };
 
   return (

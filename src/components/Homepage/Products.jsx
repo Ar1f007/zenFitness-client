@@ -21,7 +21,7 @@ export const Products = () => {
           <Card product={product} key={i} />
         ))}
       </div>
-      <div className="flex justify-center mt-16">
+      <div className="flex justify-center mt-12">
         <Link to="/all-products" className="fancy  lg:mt-20">
           <span className="top-key"></span>
           <span className="text">Go to Inventory</span>

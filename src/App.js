@@ -11,6 +11,7 @@ import {
   SignUp,
   Blogs,
   About,
+  PasswordResetForm,
 } from './pages';
 
 import { ToastContainer } from 'react-toastify';
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in/forgot-password" element={<PasswordResetForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

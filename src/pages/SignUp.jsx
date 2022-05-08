@@ -52,7 +52,7 @@ export const SignUp = () => {
 
   useEffect(() => {
     if (token) {
-      toast.success('Account created successfully', {
+      toast.success('A verification link sent to your mail. Please confirm it.', {
         toastId: customId,
       });
       navigate('/');
