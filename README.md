@@ -9,12 +9,14 @@ ZenFitness is a MERN stack inventory management website where one can view produ
 - Completely responsive for all devices
 - View selected products on Homepage
 - Brands/Suppliers slider
-- Email - password registration system
-- SignIn/SignUp with Google
-- Email verification
-- Password reset option
-- Protected routing
 - Show toasts on different events
+- Protected routing
+- Authentication
+
+  - Email - password registration system
+  - SignIn / SignUp with Google
+  - Email verification
+  - Password reset option
 
 - Products
 
@@ -34,9 +36,11 @@ ZenFitness is a MERN stack inventory management website where one can view produ
 - NodeJS
 - MongoDB
 - Express
-- JSON Web Token
+- JWT etc.
 
 ## [LIVE SITE](https://zenfitness-46154.web.app/)
+
+### Server side description of the application can be found [here](https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-Ar1f007#zen-fitness)
 
 ## Screenshots
 
@@ -60,6 +64,6 @@ Screenshots of few pages of the website.
 
 ## Author
 
-- Twitter - [@Ar1f007](https://twitter.com/Ariif_007)
 - Facebook - [@4r1f007](https://www.facebook.com/4r1f007/)
 - Instagram - [@\_4r1f](https://www.instagram.com/_4r1f)
+- Twitter - [@Ar1f007](https://twitter.com/Ariif_007)
