@@ -32,7 +32,6 @@ export const About = () => {
               here.
             </a>
           </p>
-          <p className="text-lg text-gray-400">Version: 1.0.0</p>
           <p className="text-lg text-gray-400">Frontend: React</p>
           <p className="text-lg text-gray-400">Backend: Node</p>
           <p className="text-lg text-gray-400">Tailwind component library: DaisyUI</p>

@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.config';
 import { Modal } from '../Modal';
 
-export const ProductList = ({ pageTitle, btnText, link, products, setProducts }) => {
+export const ProductList = ({ pageTitle, btnText, link, products, setProducts, myProduct }) => {
   const id = useId();
   const [showModal, setShowModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
@@ -53,9 +53,14 @@ export const ProductList = ({ pageTitle, btnText, link, products, setProducts })
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
                   <td className="flex space-x-2">
-                    <Link to={`/products/details/${product._id}`} className="btn btn-info">
+                    <Link to={`/products/details/${product._id}`} className="btn btn-primary">
                       Details
                     </Link>
+                    {myProduct && (
+                      <Link to={`/edit-product/${product._id}`} className="btn btn-info">
+                        Edit
+                      </Link>
+                    )}
                     <button
                       className="btn btn-error hover:bg-red-500"
                       onClick={() => handleDelete(product._id)}

@@ -12,6 +12,7 @@ import {
   Blogs,
   About,
   PasswordResetForm,
+  EditProduct,
 } from './pages';
 
 import { ToastContainer } from 'react-toastify';
@@ -41,7 +42,22 @@ export default function App() {
               </Protected>
             }
           />
-          <Route path="/my-products" element={<MyProducts />} />
+          <Route
+            path="/edit-product/:id"
+            element={
+              <Protected>
+                <EditProduct />
+              </Protected>
+            }
+          />
+          <Route
+            path="/my-products"
+            element={
+              <Protected>
+                <MyProducts />
+              </Protected>
+            }
+          />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />

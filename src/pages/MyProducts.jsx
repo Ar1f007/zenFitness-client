@@ -47,6 +47,7 @@ export const MyProducts = () => {
           link="/add-product"
           products={products}
           setProducts={setProducts}
+          myProduct
         />
       )}
     </>
