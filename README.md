@@ -2,7 +2,7 @@
 
 ZenFitness is a MERN stack inventory management website where one can view products and its details, modify its information and a lot more.
 
-## Task description about the project can be found [here](https://github.com/ProgrammingHeroWC4/warehouse-management-client-side-Ar1f007/blob/main/task_description.md)
+## Task description about the project can be found [here](https://github.com/Ar1f007/zenFitness-client/blob/main/task_description.md)
 
 ## Features / what is included in this project
 
@@ -40,7 +40,7 @@ ZenFitness is a MERN stack inventory management website where one can view produ
 
 ## [LIVE SITE](https://zenfitness-46154.web.app/)
 
-### Server side description of the application can be found [here](https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-Ar1f007#zen-fitness)
+### Server side description of the application can be found [here](https://github.com/Ar1f007/fireTools-server#firetools)
 
 ## Screenshots
 
