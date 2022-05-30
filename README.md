@@ -40,7 +40,7 @@ ZenFitness is a MERN stack inventory management website where one can view produ
 
 ## [LIVE SITE](https://zenfitness-46154.web.app/)
 
-### Server side description of the application can be found [here](https://github.com/Ar1f007/fireTools-server#firetools)
+### Server side description of the application can be found [here](https://github.com/Ar1f007/zenFitness-server#zen-fitness)
 
 ## Screenshots
 
