@@ -15,7 +15,7 @@ export const About = () => {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/ProgrammingHeroWC4/warehouse-management-client-side-Ar1f007/blob/main/task_description.md"
+              href="https://github.com/Ar1f007/zenFitness-client/blob/main/task_description.md"
               className="link"
             >
               here.
@@ -26,7 +26,7 @@ export const About = () => {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/ProgrammingHeroWC4/warehouse-management-client-side-Ar1f007/blob/main/README.md"
+              href="https://github.com/Ar1f007/zenFitness-client#zen-fitness"
               className="link"
             >
               here.
